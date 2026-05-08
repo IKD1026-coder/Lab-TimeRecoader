@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -48,6 +49,12 @@ public class ManagementMenu {
 		titleLabel.setFont(new Font("SansSerif", Font.BOLD, 48));
 		titleLabel.setForeground(Color.WHITE);
 		gridPanel.add(titleLabel, 0, 0, 15, 2);
+
+		// ソースコード
+		JLabel srcQR= new JLabel();
+		srcQR.setHorizontalAlignment(SwingConstants.RIGHT);
+		srcQR.setIcon(new ImageIcon("./Lab_TimeRecoader/assets_custom/QR_214033.png"));
+		gridPanel.add(srcQR, 13, 10, 2, 2);
 
 		// --- 説明 ---
 		JLabel descLabel = createDescriptionLabel(
