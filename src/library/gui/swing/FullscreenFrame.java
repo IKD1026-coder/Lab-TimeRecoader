@@ -27,10 +27,9 @@ public class FullscreenFrame extends JFrame {
 	public void setVisible(boolean b) {
 		if (b) {
 			setSize(fullWidth, fullHeight);
-			setAlwaysOnTop(true);
+			toFront();
 		} else {
 			setSize(0, 0);
-			setAlwaysOnTop(false);
 		}
 		super.setVisible(b);
 	}
