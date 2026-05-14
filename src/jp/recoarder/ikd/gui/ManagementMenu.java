@@ -54,7 +54,7 @@ public class ManagementMenu {
 		JLabel srcQR= new JLabel();
 		srcQR.setHorizontalAlignment(SwingConstants.RIGHT);
 		srcQR.setIcon(new ImageIcon("./Lab_TimeRecoader/assets_custom/QR_214033.png"));
-		gridPanel.add(srcQR, 13, 10, 2, 2);
+		gridPanel.add(srcQR, 0, 10, 2, 2);
 
 		// --- 説明 ---
 		JLabel descLabel = createDescriptionLabel(

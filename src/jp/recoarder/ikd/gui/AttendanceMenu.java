@@ -101,6 +101,11 @@ public class AttendanceMenu {
 		gikenLogo.setIcon(new ImageIcon("./Lab_TimeRecoader/assets/giken.png"));
 		gridPanel.add(gikenLogo, 24, 0, 1, 4);
 
+		JLabel srcQR= new JLabel();
+		srcQR.setHorizontalAlignment(SwingConstants.LEFT);
+		srcQR.setIcon(new ImageIcon("./Lab_TimeRecoader/assets_custom/QR_214033.png"));
+		gridPanel.add(srcQR, 0, 21, 3, 3);
+
 		ikdLogo.addMouseListener(new MouseListener() {
 			public void mouseReleased(MouseEvent e) {
 				EnterAction.actionPerformed("26KMJ02");
