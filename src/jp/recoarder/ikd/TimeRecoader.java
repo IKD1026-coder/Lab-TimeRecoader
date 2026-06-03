@@ -266,7 +266,8 @@ public class TimeRecoader {
 
 		//=====天気判定=====
 		sisRainToday = Weather.isRainy(35.46, 139.48);
-		new Timer(120000, e -> {
+		sisRainToday = true;
+		new Timer(60000*60, e -> {
 			new Thread(() -> {
 				if (!sisRainToday)
 					sisRainToday = Weather.isRainy(35.46, 139.48);
@@ -284,7 +285,7 @@ public class TimeRecoader {
 			try {
 				if (sisRainToday) {
 					Sound.Ding();
-					ProcessingMenu.showImageMessage(2000, "./Lab_TimeRecoader/assets/leaveU.jpg", "傘をお忘れなく！");
+					ProcessingMenu.showImageMessage(2500, "./Lab_TimeRecoader/assets/leaveU.jpg", "傘をお忘れなく！");
 				}
 			} catch (Exception e2) {
 				e2.printStackTrace();
