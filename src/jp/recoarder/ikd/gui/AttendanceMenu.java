@@ -27,6 +27,7 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 import jp.recoarder.ikd.LoginListener;
+import jp.recoarder.ikd.TimeRecoader;
 import jp.recoarder.ikd.assets.Sound;
 import jp.recoarder.ikd.gui.user.TimePanel_allStudent;
 import library.gui.swing.FullscreenFrame;
@@ -79,12 +80,12 @@ public class AttendanceMenu {
 		// =========================
 		// タイトル + ロゴ（横並び）
 		// =========================
-		JLabel titleLabel = new JLabel("研究室 勤怠管理システム Ver1.7", SwingConstants.CENTER);
+		JLabel titleLabel = new JLabel("研究室 勤怠管理システム Ver1.8", SwingConstants.CENTER);
 		titleLabel.setFont(new Font("SansSerif", Font.BOLD, 42));
 		titleLabel.setForeground(Color.WHITE);
 		gridPanel.add(titleLabel, 4, 0, 20, 4);
 
-		JLabel descript = new JLabel("2026/05/07更新", SwingConstants.RIGHT);
+		JLabel descript = new JLabel("2026/06/03更新", SwingConstants.RIGHT);
 		descript.setFont(new Font("SansSerif", Font.BOLD, 18));
 		descript.setForeground(Color.WHITE);
 		gridPanel.add(descript, 8, 23, 14, 1);
@@ -101,7 +102,7 @@ public class AttendanceMenu {
 		gikenLogo.setIcon(new ImageIcon("./Lab_TimeRecoader/assets/giken.png"));
 		gridPanel.add(gikenLogo, 24, 0, 1, 4);
 
-		JLabel srcQR= new JLabel();
+		JLabel srcQR = new JLabel();
 		srcQR.setHorizontalAlignment(SwingConstants.LEFT);
 		srcQR.setIcon(new ImageIcon("./Lab_TimeRecoader/assets_custom/QR_214033.png"));
 		gridPanel.add(srcQR, 0, 21, 3, 3);
@@ -158,7 +159,7 @@ public class AttendanceMenu {
 		// タイマーで毎秒更新
 		Timer timer = new Timer(1000 * 1, e -> {
 			LocalDateTime now = LocalDateTime.now();
-			dateLabel.setText(now.format(formatter));
+			dateLabel.setText(now.format(formatter) + (TimeRecoader.isRain_today() ? " 雨" : " 晴れ"));
 		});
 		dateLabel.setText(LocalDateTime.now().format(formatter));
 		timer.start();

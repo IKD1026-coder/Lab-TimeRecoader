@@ -36,6 +36,7 @@ import jp.recoarder.ikd.gui.user.AchievementView;
 import jp.recoarder.ikd.gui.user.AchievementView_allUsers_oneday;
 import jp.recoarder.ikd.gui.user.AchievementView_allUsers_oneyear;
 import jp.recoarder.ikd.gui.user.StudentMenu;
+import library.Weather;
 
 public class TimeRecoader {
 
@@ -45,6 +46,8 @@ public class TimeRecoader {
 		ss.setVisible(true);
 		Sound.touch();
 	}
+
+	private static boolean sisRainToday = false;
 
 	public static void main(String[] args) {
 		UIManager.put("ScrollBar.width", 35);
@@ -61,6 +64,7 @@ public class TimeRecoader {
 			//Sound.Chime();
 			ProcessingMenu.startAnimation(1500, "研究開始処理中…");
 			AttendanceLogger.logStart();
+			Umbrella();
 			System.gc();
 
 			Delayer(new DelayListener() {
@@ -73,6 +77,13 @@ public class TimeRecoader {
 			//Sound.Chime();
 			ProcessingMenu.startAnimation(1500, "研究終了処理中…");
 			AttendanceLogger.logEnd();
+			System.gc();
+
+			Delayer(new DelayListener() {
+				public void invoke() {
+					Umbrella();
+				}
+			});
 
 			Delayer(new DelayListener() {
 				public void invoke() {
@@ -236,10 +247,9 @@ public class TimeRecoader {
 			}
 		});
 
+		//=====表示=====
 		AM.setVisible(true);
-
 		Sound.touch();
-
 		schedule_restart();
 
 		//===コマンドログイン
@@ -254,6 +264,32 @@ public class TimeRecoader {
 			}
 		}
 
+		//=====天気判定=====
+		sisRainToday = Weather.isRainy(35.46, 139.48);
+		new Timer(120000, e -> {
+			new Thread(() -> {
+				if (!sisRainToday)
+					sisRainToday = Weather.isRainy(35.46, 139.48);
+			}).start();
+		}).start();
+	}
+
+	public static boolean isRain_today() {
+		return sisRainToday;
+	}
+
+
+	private static void Umbrella() {
+		new Thread(() -> {
+			try {
+				if (sisRainToday) {
+					Sound.Ding();
+					ProcessingMenu.showImageMessage(2000, "./Lab_TimeRecoader/assets/leaveU.jpg", "傘をお忘れなく！");
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}).start();
 	}
 
 	private static void schedule_restart() {

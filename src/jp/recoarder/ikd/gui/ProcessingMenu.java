@@ -130,4 +130,83 @@ public class ProcessingMenu {
 		t.start();
 		frame.setVisible(true);
 	}
+
+
+
+
+
+	/**
+	 * 画像とメッセージを中央にレイアウトして表示する。
+	 *
+	 * @param time_milli  表示時間（ミリ秒）。0以下なら自動で閉じない
+	 * @param imagePath   表示する画像のパス
+	 * @param message     画像の下に表示するメッセージ
+	 */
+	public static void showImageMessage(int time_milli, String imagePath, String message) {
+
+		int GRID_X = 28;
+		int GRID_Y = 24;
+
+		FullscreenFrame frame = new FullscreenFrame();
+		frame.setTitle("実績確認");
+
+		GridLayeredPane grid = new GridLayeredPane(GRID_X, GRID_Y);
+		grid.setBackground(new Color(30, 40, 50));
+		frame.getContentPane().add(grid);
+
+		// =========================
+		// タイトル
+		// =========================
+		JLabel title = new JLabel("実績確認", SwingConstants.CENTER);
+		title.setFont(new Font("SansSerif", Font.BOLD, 40));
+		title.setForeground(Color.WHITE);
+		grid.add(title, 4, 1, 20, 3);
+
+		// IKDロゴ
+		JLabel ikdLogo = new JLabel();
+		ikdLogo.setHorizontalAlignment(SwingConstants.RIGHT);
+		ikdLogo.setIcon(new ImageIcon("./Lab_TimeRecoader/assets/logo-mini.jpg"));
+		grid.add(ikdLogo, 22, 0, 4, 4);
+
+		// 技研ロゴ
+		JLabel gikenLogo = new JLabel();
+		gikenLogo.setHorizontalAlignment(SwingConstants.LEFT);
+		gikenLogo.setIcon(new ImageIcon("./Lab_TimeRecoader/assets/giken.png"));
+		grid.add(gikenLogo, 24, 0, 4, 4);
+
+		// =========================
+		// 中央の画像
+		// =========================
+		JLabel image = new JLabel();
+		image.setHorizontalAlignment(SwingConstants.CENTER);
+		image.setVerticalAlignment(SwingConstants.CENTER);
+		image.setIcon(new ImageIcon(imagePath));
+		grid.add(image, 0, 5, 28, 13);
+
+		// =========================
+		// メッセージ（下）
+		// =========================
+		JLabel messageLabel = new JLabel(message, SwingConstants.CENTER);
+		messageLabel.setFont(new Font("SansSerif", Font.BOLD, 60));
+		messageLabel.setForeground(Color.WHITE);
+		grid.add(messageLabel, 4, 18, 20, 2);
+
+		// =========================
+		// 自動で閉じる（time_milli > 0 のとき）
+		// =========================
+		if (time_milli > 0) {
+			Timer t = new Timer(time_milli, e -> {
+				frame.dispose();
+				Sound.Chime();
+			});
+			t.setRepeats(false);
+			t.start();
+		}
+
+		frame.setVisible(true);
+	}
+
+
+
+
 }
