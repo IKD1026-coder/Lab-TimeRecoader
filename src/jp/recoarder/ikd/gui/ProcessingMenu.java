@@ -20,7 +20,7 @@ public class ProcessingMenu {
 	public ProcessingMenu() {
 	}
 
-	public static void startAnimation(int time_milli, String message) {
+	public static void startAnimation(int time_milli, String message, boolean sound) {
 
 		int GRID_X = 28;
 		int GRID_Y = 24;
@@ -124,16 +124,13 @@ public class ProcessingMenu {
 
 		Timer t = new Timer(time_milli, e -> {
 			frame.dispose();
-			Sound.Chime();
+			if (sound)
+				Sound.Chime();
 		});
 		t.setRepeats(false);
 		t.start();
 		frame.setVisible(true);
 	}
-
-
-
-
 
 	/**
 	 * 画像とメッセージを中央にレイアウトして表示する。
@@ -142,7 +139,7 @@ public class ProcessingMenu {
 	 * @param imagePath   表示する画像のパス
 	 * @param message     画像の下に表示するメッセージ
 	 */
-	public static void showImageMessage(int time_milli, String imagePath, String message) {
+	public static void showImageMessage(int time_milli, String imagePath, String message, boolean sound) {
 
 		int GRID_X = 28;
 		int GRID_Y = 24;
@@ -197,7 +194,8 @@ public class ProcessingMenu {
 		if (time_milli > 0) {
 			Timer t = new Timer(time_milli, e -> {
 				frame.dispose();
-				Sound.Chime();
+				if (sound)
+					Sound.Chime();
 			});
 			t.setRepeats(false);
 			t.start();
@@ -205,8 +203,5 @@ public class ProcessingMenu {
 
 		frame.setVisible(true);
 	}
-
-
-
 
 }

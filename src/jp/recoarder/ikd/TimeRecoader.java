@@ -62,9 +62,8 @@ public class TimeRecoader {
 		StudentMenu SM = new StudentMenu();
 		SM.addBtnStartListerner(e -> {
 			//Sound.Chime();
-			ProcessingMenu.startAnimation(1500, "研究開始処理中…");
+			ProcessingMenu.startAnimation(1500, "研究開始処理中…", true);
 			AttendanceLogger.logStart();
-			Umbrella();
 			System.gc();
 
 			Delayer(new DelayListener() {
@@ -75,7 +74,7 @@ public class TimeRecoader {
 		});
 		SM.addBtnEndListerner(e -> {
 			//Sound.Chime();
-			ProcessingMenu.startAnimation(1500, "研究終了処理中…");
+			ProcessingMenu.startAnimation(1500, "研究終了処理中…", !sisRainToday);
 			AttendanceLogger.logEnd();
 			System.gc();
 
@@ -266,8 +265,8 @@ public class TimeRecoader {
 
 		//=====天気判定=====
 		sisRainToday = Weather.isRainy(35.46, 139.48);
-		sisRainToday = true;
-		new Timer(60000*60, e -> {
+		//sisRainToday = true;
+		new Timer(60000 * 60, e -> {
 			new Thread(() -> {
 				if (!sisRainToday)
 					sisRainToday = Weather.isRainy(35.46, 139.48);
@@ -279,13 +278,12 @@ public class TimeRecoader {
 		return sisRainToday;
 	}
 
-
 	private static void Umbrella() {
 		new Thread(() -> {
 			try {
 				if (sisRainToday) {
 					Sound.Ding();
-					ProcessingMenu.showImageMessage(2500, "./Lab_TimeRecoader/assets/leaveU.jpg", "傘をお忘れなく！");
+					ProcessingMenu.showImageMessage(2800, "./Lab_TimeRecoader/assets/leaveU.jpg", "傘をお忘れなく！", true);
 				}
 			} catch (Exception e2) {
 				e2.printStackTrace();
