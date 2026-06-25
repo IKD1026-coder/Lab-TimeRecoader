@@ -136,7 +136,7 @@ public class TimeRecoader {
 
 					System.out.println(tim);
 					if (tim > 0) {
-						if (!AttendanceReader.isWorking())
+						if (!AttendanceReader.isStarted(userid, LocalDate.now()))
 							AttendanceLogger.write(true, LocalDateTime.of(LocalDate.now(), LocalTime.of(13, 40)));
 						if (!AttendanceReader.isEnded(userid, LocalDate.now()))
 							AttendanceLogger.write(false, LocalDateTime.of(LocalDate.now(), LocalTime.of(18, 00)));
