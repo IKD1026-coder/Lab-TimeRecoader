@@ -125,7 +125,26 @@ public class TimeRecoader {
 
 		MM.btnSemiAddListener(e -> {
 			Sound.touch();
-			MM.confirmDialog("未実装です");
+			int in = MM.confirmDialog("一括打刻(13:40-18:00)しますか？");
+			if (in == JOptionPane.YES_OPTION) {
+				for (String userid : UserMaster.getAllUserIDs()) {
+					System.out.println(userid);
+					UserMaster.Login(userid);
+
+					long tim = AttendanceReader.getTotalStudyMinutes_nendo(userid, LocalDate.now().getYear(),
+							LocalDate.now().getMonthValue());
+
+					System.out.println(tim);
+					if (tim > 0) {
+						if (!AttendanceReader.isWorking())
+							AttendanceLogger.write(true, LocalDateTime.of(LocalDate.now(), LocalTime.of(13, 40)));
+						if (!AttendanceReader.isEnded(userid, LocalDate.now()))
+							AttendanceLogger.write(false, LocalDateTime.of(LocalDate.now(), LocalTime.of(18, 00)));
+					}
+
+				}
+			}
+
 		});
 
 		//----------------------

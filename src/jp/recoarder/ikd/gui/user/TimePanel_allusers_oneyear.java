@@ -109,16 +109,59 @@ public class TimePanel_allusers_oneyear extends JPanel {
 		int graphTop    = 30;
 		int graphBottom = height - 10;
 
-		// 最大値計算
+		// 最大値計算 + 平均用の集計
 		long maxMinutes = BASE_MINUTES;
+		long[] monthlySum = new long[12]; // 4月→翌3月の順で月ごと合計
+		int activeCount = 0;              // 学習時間>0の人数
+
 		for (String userId : users) {
-			long total = AttendanceReader.getTotalStudyMinutes_nendo(userId, year, 4);
-			if (total > maxMinutes) maxMinutes = total;
+		    long total = AttendanceReader.getTotalStudyMinutes_nendo(userId, year, 4);
+		    if (total > maxMinutes) maxMinutes = total;
+
+		    if (total > 0) {
+		        activeCount++;
+		        for (int i = 4; i < 12 + 4; i++) {
+		            int month = i > 12 ? i - 12 : i;
+		            int y     = i > 12 ? year + 1 : year;
+		            monthlySum[i - 4] += AttendanceReader.getTotalStudyMinutes(userId, y, month);
+		        }
+		    }
 		}
 
 		// 個人バー描画
 		g2.setFont(MAIN_FONT);
-		int index = 0;
+
+		// ===== 平均バー（最上段） =====
+		if (activeCount > 0) {
+		    int barY = marginTop + 0 * lineHeight + 15;
+
+		    g2.setColor(Color.YELLOW);
+		    g2.drawString("平均", 20, barY);
+
+		    double scale = (double) usableWidth / maxMinutes;
+		    int xCursor  = leftMargin;
+		    long avgYearTotal = 0;
+
+		    for (int i = 4; i < 12 + 4; i++) {
+		        long avgMinutes = monthlySum[i - 4] / activeCount; // 月ごとの平均
+		        avgYearTotal += avgMinutes;
+		        int w = (int) (avgMinutes * scale);
+
+		        g2.setColor(monthColors[(i - 4) % 12]);
+		        g2.fillRect(xCursor + 1, barY - 12, w - 2, 20);
+		        xCursor += w;
+
+		        g2.setColor(COLOR_DIV);
+		        g2.drawLine(xCursor, barY - 12, xCursor, barY + 8);
+		    }
+
+		    long hours = avgYearTotal / 60;
+		    long mins  = avgYearTotal % 60;
+		    g2.setColor(Color.WHITE);
+		    g2.drawString(String.format("平均 %d時間%d分", hours, mins), xCursor + 10, barY + 2);
+		}
+
+		int index = 1; // ← 0 から 1 に変更（平均バーの分だけ個人バーを下にずらす）
 
 		for (String userId : users) {
 			if (AttendanceReader.getTotalStudyMinutes_nendo(userId, year, 4) == 0)
