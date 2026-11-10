@@ -264,10 +264,8 @@ public class AchievementView {
 		}
 		int year = currentMonth.getYear();
 		int month = currentMonth.getMonthValue();
-		int year_prev = currentMonth.minusMonths(1).getYear();
-		int month_prev = currentMonth.minusMonths(1).getMonthValue();
 		long min_now3 = AttendanceReader.getTotalStudyMinutes_nendo(UserMaster.getActiveUserId(), year, month);
-		long min_now2 = AttendanceReader.getAverageStudyMinutes_nendo(UserMaster.getActiveUserId(), year_prev, month_prev);
+		long min_now2 = AttendanceReader.getAverageStudyMinutes_nendo(UserMaster.getActiveUserId(), year, month);
 		long min_now1 = AttendanceReader.getTotalStudyMinutes(UserMaster.getActiveUserId(), year, month);
 
 		LabTimeNow3.setText(

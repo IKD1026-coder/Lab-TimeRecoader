@@ -305,7 +305,7 @@ public class TimeRecoader {
 			try {
 				if (sisRainToday) {
 					Sound.Ding();
-					ProcessingMenu.showImageMessage(2800, "./Lab_TimeRecoader/assets/leaveU.jpg", "傘をお忘れなく！", true);
+					ProcessingMenu.showImageMessage(2000, "./Lab_TimeRecoader/assets/leaveU.jpg", "傘をお忘れなく！", true);
 				}
 			} catch (Exception e2) {
 				e2.printStackTrace();

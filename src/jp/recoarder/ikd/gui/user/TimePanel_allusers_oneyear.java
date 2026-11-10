@@ -129,6 +129,8 @@ public class TimePanel_allusers_oneyear extends JPanel {
 			}
 		}
 
+		maxMinutes = (maxMinutes / 50 + 1) * 50;
+
 		// 個人バー描画
 		g2.setFont(MAIN_FONT);
 
