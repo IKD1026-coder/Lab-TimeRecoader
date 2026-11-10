@@ -51,8 +51,9 @@ public class ManagementMenu {
 		gridPanel.add(titleLabel, 0, 0, 15, 2);
 
 		// ソースコード
-		JLabel srcQR= new JLabel();
-		srcQR.setHorizontalAlignment(SwingConstants.RIGHT);
+		JLabel srcQR = new JLabel();
+		srcQR.setHorizontalAlignment(SwingConstants.LEFT);
+		srcQR.setVerticalAlignment(SwingConstants.BOTTOM);
 		srcQR.setIcon(new ImageIcon("./Lab_TimeRecoader/assets_custom/QR_214033.png"));
 		gridPanel.add(srcQR, 0, 10, 2, 2);
 
@@ -91,7 +92,7 @@ public class ManagementMenu {
 		btnCsv = createActionButton("CSV出力", new Color(255, 200, 100));
 		gridPanel.add(btnCsv, 3, 7, 9, 1);
 
-		btnSemi = createActionButton("ゼミ打刻", new Color(200, 200, 200));
+		btnSemi = createActionButton("実装中", new Color(200, 200, 200));
 		gridPanel.add(btnSemi, 8, 5, 4, 1);
 
 		JButton btnShutdown = createActionButton("終了", new Color(200, 100, 100));
@@ -149,9 +150,10 @@ public class ManagementMenu {
 		btnFuture.addActionListener(e);
 	}
 
+	/*
 	public void btnSemiAddListener(ActionListener e) {
 		btnSemi.addActionListener(e);
-	}
+	}*/
 
 	// --- 共通ボタン生成 ---
 	private JButton createActionButton(String text, Color bgColor) {

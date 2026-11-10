@@ -80,12 +80,12 @@ public class AttendanceMenu {
 		// =========================
 		// タイトル + ロゴ（横並び）
 		// =========================
-		JLabel titleLabel = new JLabel("研究室 勤怠管理システム Ver1.8", SwingConstants.CENTER);
+		JLabel titleLabel = new JLabel("研究室 勤怠管理システム Ver2.0", SwingConstants.CENTER);
 		titleLabel.setFont(new Font("SansSerif", Font.BOLD, 42));
 		titleLabel.setForeground(Color.WHITE);
 		gridPanel.add(titleLabel, 4, 0, 20, 4);
 
-		JLabel descript = new JLabel("2026/06/03更新", SwingConstants.RIGHT);
+		JLabel descript = new JLabel("2026/11/11更新", SwingConstants.RIGHT);
 		descript.setFont(new Font("SansSerif", Font.BOLD, 18));
 		descript.setForeground(Color.WHITE);
 		gridPanel.add(descript, 8, 23, 14, 1);
@@ -95,12 +95,6 @@ public class AttendanceMenu {
 		ikdLogo.setHorizontalAlignment(SwingConstants.RIGHT);
 		ikdLogo.setIcon(new ImageIcon("./Lab_TimeRecoader/assets/logo-mini.jpg"));
 		gridPanel.add(ikdLogo, 25, 0, 1, 4);
-
-		// 技研ロゴ
-		JLabel gikenLogo = new JLabel();
-		gikenLogo.setHorizontalAlignment(SwingConstants.LEFT);
-		gikenLogo.setIcon(new ImageIcon("./Lab_TimeRecoader/assets/giken.png"));
-		gridPanel.add(gikenLogo, 24, 0, 1, 4);
 
 		JLabel srcQR = new JLabel();
 		srcQR.setHorizontalAlignment(SwingConstants.LEFT);

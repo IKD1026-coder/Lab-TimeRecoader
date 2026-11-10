@@ -75,12 +75,6 @@ public class StudentMenu {
 		ikdLogo.setIcon(new ImageIcon("./Lab_TimeRecoader/assets/logo-mini.jpg"));
 		gridPanel.add(ikdLogo, 25, 0, 1, 4);
 
-		// 技研ロゴ
-		JLabel gikenLogo = new JLabel();
-		gikenLogo.setHorizontalAlignment(SwingConstants.LEFT);
-		gikenLogo.setIcon(new ImageIcon("./Lab_TimeRecoader/assets/giken.png"));
-		gridPanel.add(gikenLogo, 24, 0, 1, 4);
-
 		ikdLogo.addMouseListener(new MouseListener() {
 			public void mouseReleased(MouseEvent e) {
 				if (btnStart.isEnabled())

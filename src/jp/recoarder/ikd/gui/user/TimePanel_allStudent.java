@@ -33,7 +33,8 @@ public class TimePanel_allStudent extends JPanel {
 	// ===== 追加: バーの当たり判定リスト =====
 	private final List<BarHitArea> barHitAreas = new ArrayList<>();
 
-	private LoginListener tL = e->{};
+	private LoginListener tL = e -> {
+	};
 
 	public TimePanel_allStudent(boolean alb) {
 		allBlack = alb;
@@ -71,9 +72,9 @@ public class TimePanel_allStudent extends JPanel {
 		if (targetMonth == null) {
 			return new java.awt.Dimension(800, 600);
 		}
-		int barWidth = 30;
+		int barWidth = 28;
 		int gap = 20;
-		int width = UserMaster.getAllUserID_filtered(keyword).size() * (barWidth + gap);
+		int width = (UserMaster.getAllUserID_filtered(keyword).size() + 1) * (barWidth + gap);
 		return new java.awt.Dimension(width, getHeight());
 	}
 
@@ -137,7 +138,7 @@ public class TimePanel_allStudent extends JPanel {
 		int topMargin = 20;
 		int chartBottom = panelHeight - bottomMargin;
 		int chartHeight = chartBottom - (titleHeight + topMargin);
-		int barWidth = 30;
+		int barWidth = 28;
 		int gap = 20;
 		int x = 30;
 
@@ -168,7 +169,7 @@ public class TimePanel_allStudent extends JPanel {
 			g.fillRect(barX, barY, barWidth, barHeight);
 
 			// ===== 追加: 当たり判定を記録 =====
-			barHitAreas.add(new BarHitArea(new Rectangle(barX, barY - 40, barWidth, barHeight+40), r.userId));
+			barHitAreas.add(new BarHitArea(new Rectangle(barX, barY - 40, barWidth, barHeight + 40), r.userId));
 
 			double angle = Math.toRadians(20);
 			g2d.rotate(angle, barX, chartBottom + 20);

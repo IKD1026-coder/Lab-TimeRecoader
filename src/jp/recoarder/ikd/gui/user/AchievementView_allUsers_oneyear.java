@@ -1,13 +1,19 @@
 package jp.recoarder.ikd.gui.user;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -86,12 +92,6 @@ public class AchievementView_allUsers_oneyear {
 		ikdLogo.setIcon(new ImageIcon("./Lab_TimeRecoader/assets/logo-mini.jpg"));
 		grid.add(ikdLogo, 22, 0, 4, 4);
 
-		// 技研ロゴ
-		JLabel gikenLogo = new JLabel();
-		gikenLogo.setHorizontalAlignment(SwingConstants.LEFT);
-		gikenLogo.setIcon(new ImageIcon("./Lab_TimeRecoader/assets/giken.png"));
-		grid.add(gikenLogo, 24, 0, 4, 4);
-
 		JButton prevBtn = IKDButton.createButton("◀", Color.gray, 32);
 		JButton nextBtn = IKDButton.createButton("▶", Color.gray, 32);
 		grid.add(prevBtn, 15, 4, 2, 1);
@@ -155,6 +155,38 @@ public class AchievementView_allUsers_oneyear {
 		cbRanking.addActionListener(listener);
 		updateFilter();
 
+	}
+
+    public static void saveComponentToBmp(Component component, String fileName) {
+        // 1. コンポーネントのサイズでBufferedImageを作成（RGB形式）
+        BufferedImage image = new BufferedImage(
+            component.getWidth(),
+            component.getHeight(),
+            BufferedImage.TYPE_INT_RGB
+        );
+
+        // 2. 描画用のGraphics2Dオブジェクトを取得
+        Graphics2D g2d = image.createGraphics();
+
+        // 3. コンポーネントをBufferedImageに描き出す
+        component.paint(g2d);
+
+        // 4. リソースの解放
+        g2d.dispose();
+
+        try {
+            // 5. "bmp" 形式でファイルに保存
+            File outputFile = new File(fileName);
+            ImageIO.write(image, "bmp", outputFile);
+            System.out.println("画像を保存しました: " + outputFile.getAbsolutePath());
+        } catch (IOException e) {
+            System.err.println("画像の保存中にエラーが発生しました。");
+            e.printStackTrace();
+        }
+    }
+
+	public void makeBMP_nendo() {
+		saveComponentToBmp(tay, "./Lab_TimeRecoader/nendo.bmp");
 	}
 
 	private void ini_checkbox() {

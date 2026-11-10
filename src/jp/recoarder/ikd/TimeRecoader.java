@@ -123,6 +123,7 @@ public class TimeRecoader {
 			}
 		});
 
+		/*
 		MM.btnSemiAddListener(e -> {
 			Sound.touch();
 			int in = MM.confirmDialog("一括打刻(13:40-18:00)しますか？");
@@ -145,7 +146,7 @@ public class TimeRecoader {
 				}
 			}
 
-		});
+		});*/
 
 		//----------------------
 		//待機画面作成
@@ -166,7 +167,9 @@ public class TimeRecoader {
 		AchievementView_allUsers_oneyear AMV3 = new AchievementView_allUsers_oneyear();
 		AM.btnAchive3Listener(e -> {
 			AMV3.setVisible(true);
+			AMV3.makeBMP_nendo();
 		});
+
 
 		//===================学籍番号自動入力===================
 		AM.setLoginListener(userId -> {

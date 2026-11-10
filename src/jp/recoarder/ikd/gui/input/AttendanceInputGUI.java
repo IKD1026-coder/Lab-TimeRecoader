@@ -73,12 +73,6 @@ public class AttendanceInputGUI {
 		ikdLogo.setIcon(new ImageIcon("./Lab_TimeRecoader/assets/logo-mini.jpg"));
 		grid.add(ikdLogo, 22, 0, 4, 4);
 
-		// 技研ロゴ
-		JLabel gikenLogo = new JLabel();
-		gikenLogo.setHorizontalAlignment(SwingConstants.LEFT);
-		gikenLogo.setIcon(new ImageIcon("./Lab_TimeRecoader/assets/giken.png"));
-		grid.add(gikenLogo, 24, 0, 4, 4);
-
 		JButton btnMenu = IKDButton.createButton("◀戻る(" + REMAIN_CLOSE + ")", Color.GRAY, 32);
 		grid.add(btnMenu, 1, 2, 6, 2);
 		btnMenu.addActionListener(e -> {
@@ -171,14 +165,14 @@ public class AttendanceInputGUI {
 			endHourBox.removeActionListener(al);
 		}
 
-		endHourBox.setSelectedIndex(endHourBox.getItemCount() - 1);
+		endHourBox.setSelectedIndex(endHourBox.getItemCount() > 1 ? 1 : 0);
 	}
 
 	public void selectCombo(LocalTime lt) {
 		startHourBox.setSelectedIndex(lt.getHour());
 		startMinBox.setSelectedIndex(lt.getMinute());
 		endHourBox.setSelectedIndex(0);
-		endMinBox.setSelectedIndex(5);
+		endMinBox.setSelectedIndex(0);
 
 		int plusminute = (int) (AttendanceReader.getAverageStudyMinutes_nendo(
 				UserMaster.getActiveUserId(),

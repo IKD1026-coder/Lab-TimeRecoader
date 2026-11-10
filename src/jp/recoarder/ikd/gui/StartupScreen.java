@@ -62,11 +62,6 @@ public class StartupScreen {
         ikdLogo.setHorizontalAlignment(SwingConstants.CENTER);
         ikdLogo.setIcon(new ImageIcon("./Lab_TimeRecoader/assets/logo-mini.jpg"));
 
-        // --- 技研ロゴ ---
-        JLabel gikenLogo = new JLabel();
-        gikenLogo.setHorizontalAlignment(SwingConstants.CENTER);
-        gikenLogo.setIcon(new ImageIcon("./Lab_TimeRecoader/assets/giken.png"));
-
         // --- システム名 ---
         JLabel title = new JLabel("Lab_TimeRecoader");
         title.setHorizontalAlignment(SwingConstants.CENTER);
@@ -87,7 +82,6 @@ public class StartupScreen {
 
         // 追加
         centerPanel.add(ikdLogo);
-        centerPanel.add(gikenLogo);
         centerPanel.add(title);
         centerPanel.add(subTitle);
         centerPanel.add(loading);

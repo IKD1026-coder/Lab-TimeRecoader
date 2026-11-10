@@ -88,11 +88,6 @@ public class AchievementView {
 		ikdLogo.setIcon(new ImageIcon("./Lab_TimeRecoader/assets/logo-mini.jpg"));
 		grid.add(ikdLogo, 22, 0, 4, 4);
 
-		// 技研ロゴ
-		JLabel gikenLogo = new JLabel();
-		gikenLogo.setHorizontalAlignment(SwingConstants.LEFT);
-		gikenLogo.setIcon(new ImageIcon("./Lab_TimeRecoader/assets/giken.png"));
-		grid.add(gikenLogo, 24, 0, 4, 4);
 		// =========================
 		// 月切り替え
 		// =========================
@@ -272,12 +267,12 @@ public class AchievementView {
 		int year_prev = currentMonth.minusMonths(1).getYear();
 		int month_prev = currentMonth.minusMonths(1).getMonthValue();
 		long min_now3 = AttendanceReader.getTotalStudyMinutes_nendo(UserMaster.getActiveUserId(), year, month);
-		long min_now2 = AttendanceReader.getTotalStudyMinutes(UserMaster.getActiveUserId(), year_prev, month_prev);
+		long min_now2 = AttendanceReader.getAverageStudyMinutes_nendo(UserMaster.getActiveUserId(), year_prev, month_prev);
 		long min_now1 = AttendanceReader.getTotalStudyMinutes(UserMaster.getActiveUserId(), year, month);
 
 		LabTimeNow3.setText(
 				AttendanceReader.getnendo(year, month) + "年度の研究時間：" + min_now3 / 60 + "時間" + min_now3 % 60 + "分");
-		LabTimeNow2.setText(year_prev + "/" + month_prev + "の研究時間：" + min_now2 / 60 + "時間" + min_now2 % 60 + "分");
+		LabTimeNow2.setText(AttendanceReader.getnendo(year, month) + "年度の平均研究時間(一日あたり)：" + min_now2 / 60 + "時間" + min_now2 % 60 + "分");
 		LabTimeNow1.setText(year + "/" + month + "の研究時間：" + min_now1 / 60 + "時間" + min_now1 % 60 + "分");
 	}
 

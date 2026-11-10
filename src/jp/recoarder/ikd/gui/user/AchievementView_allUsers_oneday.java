@@ -100,11 +100,6 @@ public class AchievementView_allUsers_oneday {
 		ikdLogo.setIcon(new ImageIcon("./Lab_TimeRecoader/assets/logo-mini.jpg"));
 		grid.add(ikdLogo, 22, 0, 4, 4);
 
-		// 技研ロゴ
-		JLabel gikenLogo = new JLabel();
-		gikenLogo.setHorizontalAlignment(SwingConstants.LEFT);
-		gikenLogo.setIcon(new ImageIcon("./Lab_TimeRecoader/assets/giken.png"));
-		grid.add(gikenLogo, 24, 0, 4, 4);
 		// =========================
 		// 月切り替え
 		// =========================
