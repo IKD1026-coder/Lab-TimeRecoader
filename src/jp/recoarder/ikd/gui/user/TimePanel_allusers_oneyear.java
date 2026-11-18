@@ -129,7 +129,7 @@ public class TimePanel_allusers_oneyear extends JPanel {
 			}
 		}
 
-		maxMinutes = (maxMinutes / 50 + 1) * 50;
+		maxMinutes = (maxMinutes / 100 / 60 + 1) * 100 * 60;
 
 		// 個人バー描画
 		g2.setFont(MAIN_FONT);
@@ -215,7 +215,7 @@ public class TimePanel_allusers_oneyear extends JPanel {
 		// 横軸目盛り
 		g2.setColor(Color.GRAY);
 		g2.setFont(SCALE_FONT);
-		for (int i = 0; i <= 9; i++) {
+		for (int i = 0; i <= 10; i++) {
 			double ratio = i / 10.0;
 			long value = (long) (maxMinutes * ratio);
 			int x = leftMargin + (int) (usableWidth * ratio);

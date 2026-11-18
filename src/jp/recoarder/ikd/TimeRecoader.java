@@ -66,6 +66,7 @@ public class TimeRecoader {
 			AttendanceLogger.logStart();
 			System.gc();
 
+			AttendanceReader.invalidateAllCache();
 			Delayer(new DelayListener() {
 				public void invoke() {
 					SM.setVisible(false);
@@ -84,6 +85,7 @@ public class TimeRecoader {
 				}
 			});
 
+			AttendanceReader.invalidateAllCache();
 			Delayer(new DelayListener() {
 				public void invoke() {
 					SM.setVisible(false);
@@ -167,7 +169,7 @@ public class TimeRecoader {
 		AchievementView_allUsers_oneyear AMV3 = new AchievementView_allUsers_oneyear();
 		AM.btnAchive3Listener(e -> {
 			AMV3.setVisible(true);
-			AMV3.makeBMP_nendo();
+			//AMV3.makeBMP_nendo();
 		});
 
 

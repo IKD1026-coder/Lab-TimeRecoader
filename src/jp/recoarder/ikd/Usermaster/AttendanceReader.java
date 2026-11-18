@@ -12,8 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import javax.swing.Timer;
-
 import jp.recoarder.ikd.assets.Sound;
 
 public class AttendanceReader {
@@ -33,13 +31,6 @@ public class AttendanceReader {
 		// key=日付, value=終了時刻（nullなら未打刻）
 		final Map<LocalDate, LocalTime> endMap = new HashMap<>();
 	}
-
-	static {
-		new Timer(30*1000,e->{
-			invalidateAllCache();
-		}).start();
-	}
-
 
 	// ======================================================
 	// キャッシュ操作
